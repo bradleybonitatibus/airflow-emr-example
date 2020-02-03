@@ -1,2 +1,2 @@
 # airflow-emr-example
-Accompanying files for Apache A
+Example DAG for submitting Apache Spark jobs onto EMR using Airflow
