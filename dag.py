@@ -17,7 +17,7 @@ args = {
 }
 
 BUCKET_NAME = "{your_bucket_name}"
-S3_KEY = "{your_s3_key}/example.py"
+S3_KEY = "{your_s3_key}/plain_example.py"
 BOOTSTRAP_SCRIPT_URL = "{your_bootstrap_script}"
 EC2_SUBNET_ID = "{your_ec2_subnet_id}"
 S3_URL = "s3://{0}/{1}".format(BUCKET_NAME, S3_KEY)
@@ -83,7 +83,7 @@ JOB_FLOW = {
             "ActionOnFailure": "TERMINATE_CLUSTER",
             "HadoopJarStep": {
                 "Jar": "command-runner.jar",
-                "Args": ["spark-submit", "/home/hadoop/example.py"]
+                "Args": ["spark-submit", "/home/hadoop/plain_example.py"]
             }
         },
     ],
@@ -100,7 +100,7 @@ with DAG(
         task_id="copy_script_to_s3",
         python_callable=copy_to_s3,
         op_kwargs={
-            "filename": os.path.join(os.path.dirname(__file__), "example.py"),
+            "filename": os.path.join(os.path.dirname(__file__), "plain_example.py"),
             "key": S3_KEY,
             "bucket_name": BUCKET_NAME,
             "connection_id": S3_CONN_ID
